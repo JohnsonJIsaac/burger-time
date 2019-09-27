@@ -1,61 +1,70 @@
+// Dependencies
+// =============================================================
+
 // Requiring our Todo model
 const db = require("../models");
 
 // Routes
 // =============================================================
-module.exports = function(app) {
+const apiRoutes = function(app) {
 
-  // GET route for getting all of the todos
-  app.get("/", function(req, res) {
-      //let key= <h1>data yo</h1>
-    // findAll returns all entries for a table when used with no options
-   // db.Todo.findAll({}).then(function(dbTodo) {
-      // We have access to the todos as an argument inside of the callback function
-      res.render("index");
-    //});
-  });
+    app.get("/", function(req, res) {
+        // let data = "<h1>This is Data</h1>"
+        // let data = 3267189478921
+        res.render("index")
+        // res.render("index", {key: data})
 
-  // POST route for saving a new todo
-  // app.post("/api/burgers", function(req, res) {
-  //     console.log("\n\nNONOONONNOO\n\n")
-  //   // Add sequelize code for creating a post using req.body,
-  //   // then return the result using res.json
-  //   // console.log("hskajdhsakldjkdlajdlaks", req.body);
-  //   db.Burger.create({
-  //     burgerName: req.body.burgerName,
-  //     devoured: req.body.devoured,
-  //   }).then(function(dbPost) {
-  //       console.log("\n\nYEAH SO WE GET TO THIS POINT???\n\n");
-  //     res.json(dbPost);
-  //   })
-  // });
+        
+        // db.Burgers.findAll({}).then(function(dbBurgers) {
+            // res.json(dbBurgers);
+        // });
+    });
 
-  app.get("/api/post", function(req, res) {
-    console.log("\n\nNONOONONNOO\n\n")
-    db.Burgers.findAll({    }).then(function(dbPost) {
-      res.json(dbPost);
+  // GET route for getting all of the posts
+  app.get("/api/burgers", function(req, res) {
+    // Add sequelize code to find all posts, and return them to the user with res.json
+    db.Burgers.findAll({}).then(function(dbBurgers) {
+      // We have access to the Burgers as an argument inside of the callback function
+      res.json(dbBurgers);
     });
   });
 
+  // POST route for saving a new post
+  app.post("/api/burgers", function(req, res) {
+    // Add sequelize code for creating a post using req.body,
+    // then return the result using res.json
 
-  app.post("/api/post", function(req, res) {
-    console.log("\n\nNONOONONNOO\n\n");
+    // console.log("hskajdhsakldjkdlajdlaks", req.body);
     db.Burgers.create({
       burgerName: req.body.burgerName,
-      devoured: req.body.devoured
+      devoured: req.body.devoured,
     }).then(function(dbPost) {
       res.json(dbPost);
-    });
+    })
   });
 
-  // DELETE route for deleting todos. We can get the id of the todo we want to delete from
-  // req.params.id
-  app.delete("/api/todos/:id", function(req, res) {
-
+  // POST route for saving a new post
+  app.put("/api/burgers/:burger", function(req, res) {
+    console.log(req.params.burger)
+    db.Burgers.update(
+      {devoured: req.body.devoured},
+      {where:
+        {burgerName: req.params.burger}
+    }).then(function(dbPost) {
+      res.json(dbPost);
+    })
   });
 
-  // PUT route for updating todos. We can get the updated todo from req.body
-  app.put("/api/todos", function(req, res) {
+  // // DELETE route for deleting posts
+  // app.delete("/api/posts/:id", function(req, res) {
+  //   // Add sequelize code to delete a post where the id is equal to req.params.id, 
+  //   // then return the result to the user using res.json
+  // });
 
-  });
-};
+//   // PUT route for updating posts
+//   app.put("/api/posts", function(req, res) {
+//     // Add code here to update a post using the values in req.body, where the id is equal to
+//     // req.body.id and return the result to the user using res.json
+//   });
+ };
+module.exports = apiRoutes;

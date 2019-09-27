@@ -1,17 +1,21 @@
 module.exports = function (sequelize, DataTypes) {
-console.log("\n\n\YAYAYAYAYAYAYAY\n")
-  const Burgers = sequelize.define("burgers", {
-    burgerName: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [1]
+  console.log("\n\nTHIS ALSO HAPPENS ON LOAD UP:       models/burger.js\n");
+  const Burgers = sequelize.define("Burgers", {
+      burgerName: {
+          type: DataTypes.STRING,
+          allowNull: false,
+          validate: {
+              len: [1]
+          }
+      },
+      devoured: {
+          type:DataTypes.BOOLEAN,
+          defaultValue: false
       }
-    },
-    devoured: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false,
-    },
+
   });
+
   return Burgers;
 }
+
+

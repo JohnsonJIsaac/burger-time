@@ -1,7 +1,7 @@
 module.exports = function (sequelize, DataTypes) {
-
-  var Burger = sequelize.define("Burger", {
-    burger_name: {
+console.log("\n\n\YAYAYAYAYAYAYAY\n")
+  const Burgers = sequelize.define("burgers", {
+    burgerName: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
@@ -13,5 +13,5 @@ module.exports = function (sequelize, DataTypes) {
       defaultValue: false,
     },
   });
-  return Burger;
+  return Burgers;
 }

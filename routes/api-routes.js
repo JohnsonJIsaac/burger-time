@@ -1,5 +1,5 @@
 // Requiring our Todo model
-var db = require("../models");
+const db = require("../models");
 
 // Routes
 // =============================================================
@@ -16,17 +16,35 @@ module.exports = function(app) {
   });
 
   // POST route for saving a new todo
-  app.post("/api/", function(req, res) {
-    console.log(req.body);
-    // create takes an argument of an object describing the item we want to
-    // insert into our table. In this case we just we pass in an object with a text
-    // and complete property (req.body)
-    db.Burger.create({
-      text: req.body.text,
-      complete: req.body.complete
-    }).then(function(dbBurger) {
-      // We have access to the new todo as an argument inside of the callback function
-      res.json(dbBurger);
+  // app.post("/api/burgers", function(req, res) {
+  //     console.log("\n\nNONOONONNOO\n\n")
+  //   // Add sequelize code for creating a post using req.body,
+  //   // then return the result using res.json
+  //   // console.log("hskajdhsakldjkdlajdlaks", req.body);
+  //   db.Burger.create({
+  //     burgerName: req.body.burgerName,
+  //     devoured: req.body.devoured,
+  //   }).then(function(dbPost) {
+  //       console.log("\n\nYEAH SO WE GET TO THIS POINT???\n\n");
+  //     res.json(dbPost);
+  //   })
+  // });
+
+  app.get("/api/post", function(req, res) {
+    console.log("\n\nNONOONONNOO\n\n")
+    db.Burgers.findAll({    }).then(function(dbPost) {
+      res.json(dbPost);
+    });
+  });
+
+
+  app.post("/api/post", function(req, res) {
+    console.log("\n\nNONOONONNOO\n\n");
+    db.Burgers.create({
+      burgerName: req.body.burgerName,
+      devoured: req.body.devoured
+    }).then(function(dbPost) {
+      res.json(dbPost);
     });
   });
 

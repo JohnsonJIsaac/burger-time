@@ -7,10 +7,10 @@ USE burgers_db;
 
 CREATE TABLE burgers (
     id INT NOT NULL AUTO_INCREMENT,
-    burger_name VARCHAR(50) NULL,
+    burgerName VARCHAR(50) NULL,
     devoured BOOLEAN,
-    extra VARCHAR(50),
-    extra_two VARCHAR(50),
+    createdAt VARCHAR(50),
+    updatedAt VARCHAR(50),
     PRIMARY KEY (id)
 );
 

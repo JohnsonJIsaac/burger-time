@@ -34,7 +34,7 @@ const apiRoutes = function(app) {
     // Add sequelize code for creating a post using req.body,
     // then return the result using res.json
 
-    // console.log("hskajdhsakldjkdlajdlaks", req.body);
+  
     db.Burgers.create({
       burgerName: req.body.burgerName,
       devoured: req.body.devoured,
@@ -55,16 +55,5 @@ const apiRoutes = function(app) {
     })
   });
 
-  // // DELETE route for deleting posts
-  // app.delete("/api/posts/:id", function(req, res) {
-  //   // Add sequelize code to delete a post where the id is equal to req.params.id, 
-  //   // then return the result to the user using res.json
-  // });
-
-//   // PUT route for updating posts
-//   app.put("/api/posts", function(req, res) {
-//     // Add code here to update a post using the values in req.body, where the id is equal to
-//     // req.body.id and return the result to the user using res.json
-//   });
  };
 module.exports = apiRoutes;

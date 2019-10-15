@@ -1,14 +1,7 @@
 // Set up MySQL connection.
 const mysql = require("mysql");
-
-const connection = mysql.createConnection({
-  host: "localhost",
-  port: process.env.PORT || 3306,
-  user: "root",
-  password: "root",
-  database: "burger_db"
-});
-
+const MONGODB_URI = process.env.MONGODB_URI || `mongodb://localhost/burger_db`
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 // Make connection.
 connection.connect(function(err) {
   if (err) {
